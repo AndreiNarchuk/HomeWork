@@ -14,14 +14,14 @@ public class ArraysUtils {
         Scanner console = new Scanner(System.in);
 
         int n;
-        System.out.println("Введите размерность массива");
+        System.out.println("\n\n"+"Введите размерность массива");
         n = console.nextInt();
 
         int[] container;
         container = new int[n];
 
         if (container.length != 0 & container.length > 0) {
-            System.out.println("Введите значение " + n + " элементов массива");
+            System.out.println("\n"+"Введите значение " + n + " элементов массива");
             for (int i = 0; i < container.length; i++) {
                 if (n != 0) {
                     container[i] = console.nextInt();
@@ -42,7 +42,7 @@ public class ArraysUtils {
     public static int[] arrayRandom(int size, int maxValueExclusion) {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Введите размер создаваемого массива:");
+        System.out.println("\n\n"+"Введите размер создаваемого массива:");
         size = in.nextInt();
 
         System.out.println("Введите число, до какого будут перебираться элементы создаваемого массива:");
