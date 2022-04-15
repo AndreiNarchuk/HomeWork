@@ -1,6 +1,8 @@
 package HomeWork3.calcs.simple;
 
-public class CalculatorWithMathExtends extends CalculatorWithOperator {
+import HomeWork3.calcs.api.ICalculator;
+
+public class CalculatorWithMathExtends extends CalculatorWithOperator implements ICalculator {
 
     /*
     4. Класс должен наследовать класс CalculatorWithOperator.
@@ -21,6 +23,11 @@ public class CalculatorWithMathExtends extends CalculatorWithOperator {
     @Override
     public double sqrt(double a) {
         return Math.sqrt(a);
+    }
+
+    @Override
+    public long getCountOperation() {
+        return 0;
     }
 
     @Override

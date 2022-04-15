@@ -1,11 +1,12 @@
 package HomeWork3.calcs.simple;
 
 
-public class CalculatorWithMathCopy {
-    /*
+import HomeWork3.calcs.api.ICalculator;
+
+public class CalculatorWithMathCopy implements ICalculator {
+        /*
         3. Все методы объявленные в данном классе НЕ статические (не имеют модификатор static).
         Методы pow, abs, sqrt должны содержать в своём теле вызов библиотеки Math и возврат полученного результата.
-
          */
     /**
      * Возвращает сумму предаваемых аргументов типа double.
@@ -54,7 +55,7 @@ public class CalculatorWithMathCopy {
      * @param b степень возведения типа int
      * @return аргумент в заданной степени
      */
-    public double pow(double a, double b) {
+    public double pow(double a, int b) {
        return Math.pow(a, b);
     }
 
@@ -73,8 +74,13 @@ public class CalculatorWithMathCopy {
      * @param a значение аргумента типа double;
      * @return квадратный корень из переданного аргумента.
      */
-    public double sqrt(int a) {
+    public double sqrt(double a) {
         return Math.sqrt(a);
+    }
+
+    @Override
+    public long getCountOperation() {
+        return 0;
     }
 
 }

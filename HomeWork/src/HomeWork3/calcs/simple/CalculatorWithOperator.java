@@ -1,9 +1,8 @@
 package HomeWork3.calcs.simple;
 
+import HomeWork3.calcs.api.ICalculator;
 
-
-
-public class CalculatorWithOperator {
+public class CalculatorWithOperator implements ICalculator{
     /*
     2. Все методы объявленные в данном классе НЕ статические (не имеют модификатор static).
      */
@@ -53,12 +52,12 @@ public class CalculatorWithOperator {
     /**
      * Возвращает значение возведенного аргумена а типа double в целочисленную степень типа int
      * @param a возводимый аргумент
-     * @param powValue степень возведения типа int
+     * @param b степень возведения типа int
      * @return аргумент в заданной степени
      */
-    public double pow(double a, int powValue) {
+    public double pow(double a, int b) {
         double result = 1;
-        for (int i = 1; i <= powValue; i++) {
+        for (int i = 1; i <= b; i++) {
             result = result * a;
         }
         return result;
@@ -82,6 +81,11 @@ public class CalculatorWithOperator {
     public double sqrt(double a){
         sqrtNew(a);
         return a;
+    }
+
+    @Override
+    public long getCountOperation() {
+        return 0;
     }
 
     /**
@@ -160,9 +164,5 @@ public class CalculatorWithOperator {
 //        }
 //        return b;
 //    }
+
 }
-
-
-
-
-

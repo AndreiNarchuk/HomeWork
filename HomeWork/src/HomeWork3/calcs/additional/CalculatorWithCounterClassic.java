@@ -3,13 +3,11 @@ package HomeWork3.calcs.additional;
 import HomeWork3.calcs.simple.CalculatorWithMathExtends;
 
 public class CalculatorWithCounterClassic extends CalculatorWithMathExtends {
-
+     /*
+     5. Создать класс CalculatorWithCounterClassic.
+     В классе должен быть метод long getCountOperation() который должен возвращать количество использований данного калькулятора.
+      */
     private long count;
-
-    /*
-    5. Создать класс CalculatorWithCounterClassic.
-    В классе должен быть метод long getCountOperation() который должен возвращать количество использований данного калькулятора.
-     */
 
     void incrementCountOperation() {
         count++;
@@ -60,6 +58,4 @@ public class CalculatorWithCounterClassic extends CalculatorWithMathExtends {
         incrementCountOperation();
         return Math.sqrt(a);
     }
-
-
 }

@@ -3,7 +3,12 @@ package HomeWork3.calcs.additional;
 import HomeWork3.calcs.simple.CalculatorWithMathExtends;
 
 public class CalculatorWithCounterAutoSuper extends CalculatorWithMathExtends {
+    /*
+    6. Создать класс CalculatorWithCounterAutoSuper.
+     */
+
     private long counter;
+
     @Override
     public double pow(double a, int powValue) {
         counter++;
@@ -47,5 +52,8 @@ public class CalculatorWithCounterAutoSuper extends CalculatorWithMathExtends {
     }
     public final long getCountOperation(){
         return counter;
+    }
+
+    public CalculatorWithCounterAutoSuper(){
     }
 }

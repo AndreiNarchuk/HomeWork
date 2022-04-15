@@ -14,7 +14,7 @@ public class CalculatorWithMathCopyMain {
         double c = 7;
         double d = 28;
         double e = 5;
-        double f = 2;
+        int f = 2;
         double equals;
 
         CalculatorWithMathCopy calc = new CalculatorWithMathCopy();
