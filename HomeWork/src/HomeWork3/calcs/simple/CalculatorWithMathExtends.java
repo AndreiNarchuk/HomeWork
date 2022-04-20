@@ -26,11 +26,6 @@ public class CalculatorWithMathExtends extends CalculatorWithOperator implements
     }
 
     @Override
-    public long getCountOperation() {
-        return 0;
-    }
-
-    @Override
     public double plus(double a, double b) {
         return super.plus(a, b);
     }

@@ -78,9 +78,4 @@ public class CalculatorWithMathCopy implements ICalculator {
         return Math.sqrt(a);
     }
 
-    @Override
-    public long getCountOperation() {
-        return 0;
-    }
-
-}
+   }

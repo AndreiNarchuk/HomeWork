@@ -83,10 +83,7 @@ public class CalculatorWithOperator implements ICalculator{
         return a;
     }
 
-    @Override
-    public long getCountOperation() {
-        return 0;
-    }
+
 
     /**
      * Возвращает значение квадратного корня из числа с точностью до 14 знаков после запятой.

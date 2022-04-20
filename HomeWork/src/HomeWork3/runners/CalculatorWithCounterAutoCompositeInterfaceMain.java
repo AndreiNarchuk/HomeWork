@@ -24,8 +24,9 @@ public class CalculatorWithCounterAutoCompositeInterfaceMain {
 
         equals = calc.plus(calc.plus(a, calc.times(b, c)), (calc.pow(calc.div(d,e), f)));
 
+        if (calc instanceof CalculatorWithCounterAutoAgregationInterface){((CalculatorWithCounterAutoAgregationInterface) calc).getCountOperation();}
         System.out.println("4.1 + 15 * 7 + (28 / 5) ^ 2 = " + equals);
-        System.out.println("\n" + "Количество выполненных операций при запуске CalculatorWithCounterAutoAgregation: " + calc.getCountOperation());
+        System.out.println("\n" + "Количество выполненных операций при запуске CalculatorWithCounterAutoAgregation: " + ((CalculatorWithCounterAutoAgregationInterface) calc).getCountOperation());
 
     }
 }

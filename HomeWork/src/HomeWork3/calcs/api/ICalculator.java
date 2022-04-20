@@ -23,5 +23,5 @@ public interface ICalculator {
 
     double sqrt(double a);
 
-    long getCountOperation();
+
 }
