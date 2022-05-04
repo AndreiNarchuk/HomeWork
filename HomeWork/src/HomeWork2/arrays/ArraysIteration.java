@@ -1,12 +1,13 @@
-package HomeWork2.loops.arrays;
+package HomeWork2.arrays;
 
-import static HomeWork2.loops.arrays.ArraysUtils.arrayFromConsole;
+import HomeWork2.utils.ArraysUtils;
+
 
 public class ArraysIteration {
     public static void main(String[] args) {
         int[] container;
 
-        container = arrayFromConsole();
+        container = ArraysUtils.arrayFromConsole();
 
         allElements(container);
         System.out.println();
@@ -16,8 +17,14 @@ public class ArraysIteration {
 
         reverseOrderElements(container);
         System.out.println();
+
     }
 
+    /**
+     * Возвращает все элементы массива
+     * @param container
+     * @return
+     */
         public static int[] allElements(int[] container) {
             int len;
             int i;
@@ -59,6 +66,11 @@ public class ArraysIteration {
             return container;
         }
 
+    /**
+     * Возвращает каждый второй элемент массива
+     * @param container
+     * @return
+     */
         public static int[] everySecondElements(int[] container) {
             int len2;
             int i = 0;
@@ -106,7 +118,12 @@ public class ArraysIteration {
             return container;
         }
 
-        public static int[] reverseOrderElements(int[] container) {
+    /**
+     * Возвращает элементы массива в обратном порядке
+     * @param container
+     * @return
+     */
+    public static int[] reverseOrderElements(int[] container) {
             int len;
             int i = 0;
             String result;
@@ -147,8 +164,6 @@ public class ArraysIteration {
 
             return container;
         }
-
-
     }
 
 

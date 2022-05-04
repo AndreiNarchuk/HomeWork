@@ -1,8 +1,7 @@
 package HomeWork4;
 
 import java.util.Arrays;
-
-import static HomeWork4.DataContainer.sort;
+import java.util.Iterator;
 
 public class DataContainerStringMain {
     public static void main(String[] args) {
@@ -22,36 +21,45 @@ public class DataContainerStringMain {
         String text2 = container.get(index2);
         String text3 = container.get(index3);
         String text4 = container.get(index4);
-        
+
         //Задание 6., 7. Метод delete(int index) который будет удалять элемент из нашего поля data по индексу.
         System.out.println(text1); //Привет
         System.out.println(text2); //Как дела
         System.out.println(text3); //Работаю
         System.out.println(text4); //Давай потом
 
-         //Задание 8. Добавить метод boolean delete(T item) который будет удалять элемент из нашего поля data.
+        //Задание 8. Добавить метод boolean delete(T item) который будет удалять элемент из нашего поля data.
         container.delete1(text1);
         System.out.println(container.get(index1)); //Как дела
-        System.out.println(container.toString());
+        System.out.println("\n" + container.toString());
 
         //Задание 9. метод занимается сортировкой данных записанных в поле data.
-        sort(container);
-        System.out.println(container.toString());
+        container.sort(container);
+        System.out.println("\n" + container.toString());
 
         //Задание 10. Метод toString() в классе и выводить содержимое data без ячеек в которых хранится null
         // Задание 11. 12. принимать объект DataContainer с дженериком extends Comparable. Данный метод будет сортировать элементы в
         // ПЕРЕДАННОМ объекте DataContainer используя реализацию сравнения вызываемый у хранимых объектов.
-        Humans[] men = new Humans[]{new Humans("Марк", 24), new Humans("Виталик", 18), new Humans("Марина", 16), new Humans("Роман", 38)};
 
-        DataContainer<Humans> container2 = new DataContainer<>(men);
-        // todo задание 12
-        System.out.println(" Введенный массив: " + Arrays.toString(container2.getItems()));
+        Humans[] human = new Humans[]{new Humans("Марк", 24), new Humans("Виталик", 18), new Humans("Марина", 16), new Humans("Роман", 38)};
+        DataContainer<Humans> container2 = new DataContainer<>(human);
 
-       //todo задание 13
+        // Задание 12.
+        System.out.println("\n"+"Введенный массив: " + Arrays.toString(container2.getItems()));
+        DataContainer.sort(container2, new AgeComparator());
+        System.out.println("\n"+"Элементы после сортировки по возрасту: " + container2);
 
+
+        // задание 13
+        System.out.println("\n"+"Вывод с использыванием итератора:");
+        Iterator<Humans> menIter = Arrays.stream(human).iterator();
+        while (menIter.hasNext()) {
+            System.out.println(menIter.next());
+
+        }
     }
-
 }
+
 
 
 

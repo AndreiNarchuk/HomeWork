@@ -1,13 +1,13 @@
-package HomeWork2.loops.arrays;
+package HomeWork2.arrays;
 
 import java.util.Scanner;
 
-import static HomeWork2.loops.arrays.ArraysUtils.arrayRandom;
+import static HomeWork2.utils.ArraysUtils.arrayRandom;
 
 public class Arrays2_4 {
     public static void main(String[] args) {
         int[] arr;
-
+        Scanner console = new Scanner(System.in);
         arr = arrayRandom(50, 100);
 
         System.out.println("\n"+"Cумма четных положительных элементов массива: " + sumFourElements(arr));
@@ -15,8 +15,15 @@ public class Arrays2_4 {
         System.out.println("\n"+"Элементы массива, которые меньше среднего арифметического:" + lowMiddleElements(arr));
         System.out.println("\n"+"Два наименьших элемента (минимальных) элемента массива:");
         System.out.println(lowElements(arr));
-        System.out.println("\n"+"Массив после удаления элементов:" + delArray(arr));
         System.out.println("\n"+"Сумма цифр массива:" + sumArray(arr));
+
+        System.out.println("Укажите интервал, в котором удалить эелементы: >");
+        int a = console.nextInt();
+        System.out.println("> ");
+        int b = console.nextInt();
+
+        System.out.println("\n"+"Массив после удаления элементов:" + delArray(arr, a, b));
+
     }
 
     public static int sumFourElements(int[] arr) {
@@ -95,19 +102,11 @@ public class Arrays2_4 {
         return result;
     }
 
-    public static String delArray(int[] arr) {
+    public static String delArray(int[] arr, int a, int b) {
         int[] arr2;
-        int a;
-        int b;
+
         int c;
         String result;
-
-
-        Scanner console = new Scanner(System.in);
-        System.out.println("Укажите интервал, в котором удалить эелементы: >");
-        a = console.nextInt();
-        System.out.println("> ");
-        b = console.nextInt();
 
         arr2 = new int[arr.length];
         c = a;

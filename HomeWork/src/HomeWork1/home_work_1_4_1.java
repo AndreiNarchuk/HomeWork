@@ -14,21 +14,17 @@ public class home_work_1_4_1 {
         System.out.print("Сегодня vacation? Введите true/false :");
         Boolean vacation = console.nextBoolean();
 
-        if (sleepIn(weekday, vacation))
-            System.out.println("Ура! Мы можем спать дальше");
-            System.out.println("Опять работа.");
+        System.out.println(sleepIn(weekday,vacation));
     }
 
 
-    private static boolean sleepIn(boolean weekday,boolean vacation) {
+    public static String sleepIn(boolean weekday, boolean vacation) {
 
         if (!weekday || vacation) {
-            return true;
-            }
-            return false;}
-
-
-
-
+            return "Ура! Мы можем спать дальше";
+        }
+        return "Опять работа.";
+    }
 
 }
+

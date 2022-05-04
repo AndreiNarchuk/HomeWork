@@ -1,8 +1,7 @@
-package HomeWork2.sorts;
+package HomeWork2.utils;
 
 public class SortUtils {
-    public static void main(String[] args) {
-    }
+
 
     public static void bubble(int[] arr) {
         boolean sorted;
@@ -48,7 +47,7 @@ public class SortUtils {
             r += arr[i] + " ";
         }
         System.out.printf("["+r+"]");
-        
+
         right = arr.length - 1;
         left = 0;
 

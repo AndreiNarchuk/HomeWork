@@ -9,41 +9,53 @@ public class DataContainer<T> {
     private T[] data;
 
 
-    //  3. Из-за особенностей дженериков в данном классе обязательно будет присутствовать один конструктор DataContainer(T[]).
-//   Есть и другие способы, но в рамках обучения они будут сложными и с ними мы разбираться будем слишком сложно.A
-    public DataContainer(T[] toSetArr) {
-        this.data = toSetArr;
+    /**
+     * Контейнер для хранения данных любого типа
+     * @param data обобщенный тип данных (определяеть при объявлении)
+     */
+    public DataContainer(T[] data) {
+        this.data = data;
     }
 
-    //  4. В данном классе должен быть метод int add(T item) который добавляет данные во внутреннее поле data и возвращает
-//  номер позиции в которую были вставлены данные, начиная с 0.
+    /**
+     * Метод принимает данные и добавляет их в объект Т
+     * @param item значение добавляемых данных
+     * @return индекс массива куда добавленны данные при
+     */
     public int add(T item) {
-
-        //            4.1 Если поле data не переполнено то данные нужно добавлять в первую позицию (ячейку) после последней заполненной позиции (ячейки).
-//            4.1.1 Пример: data = [1, 2, 3, null, null, null]. Вызвали add(777). Должно получиться data = [1, 2, 3, 777, null, null]. Метод add вернёт число 3.
-//            4.1.2 Пример: data = [1, 2, 3, null, null, null]. Вызвали add(null). Должно получиться data = [1, 2, 3, null, null, null].
-//            Метод add вернёт число -1. -1 будет индикатором того что данный элемент в наш контейнер вставлять нельзя.
-
-//		4.1.3 Пример: data = [1, null, 3, null, null, null]. Вызвали add(777). Должно получиться data = [1, 777, 3, null, null, null]. Метод add вернёт число 1.
-//            4.2 В случае если поле data переполнено, нужно придумать механизм который будет расширять пространство для новых элементов. Тут вам поможет Arrays.copyOf.
-//		4.2.1 Пример: data = [1, 2, 3]. Вызвали add(777). Должно получиться data = [1, 2, 3, 777]. Метод add вернёт число 3.
-//            4.2.2 Пример: data = []. Вызвали add(777). Должно получиться data = [777]. Метод add вернёт число 0.
-        if (this.data.length == 0 || this.data[this.data.length - 1] != null) {
-            this.data = Arrays.copyOf(this.data, this.data.length + 1);
+        if(item == null) {
+            return -1;
         }
-        if (this.data.length >= 1)
-            for (int i = 0; i < data.length - 1; i++) {
-                if (data[i] == null) {
-                    this.data = Arrays.copyOfRange((this.data), i, 1);
-                }
-            }
-        this.data[this.data.length - 1] = item;
-        return this.data.length - 1;
-    }
-    //TODO...4.
 
-    //  5. В данном классе должен быть метод T get(int index). Данный метод получает из DataContainer'а, из поля data, предварительно
-//   сохранённый объект который мы передали на предыдущем шаге через метод add.
+        int j = 0;
+
+        for (T datum : this.data) {
+            if(datum != null) {
+                j++;
+            } else {
+                break;
+            }
+        }
+
+        if(this.data.length == 0 || j == this.data.length) {
+            this.data = Arrays.copyOf(this.data, data.length + 1);
+            this.data[data.length - 1] = item;
+            return data.length - 1;
+        } else {
+            this.data[j] = item;
+            return j;
+        }
+
+    }
+
+
+    //  Задание 5.
+
+    /**
+     * Метод принимает индекс элемента данных в массиве и возвращает значение элемента с указанным индексом
+     * @param index
+     * @return
+     */
     public T get(int index) {
 
         if (index >= 0 && index <= data.length - 1 && data[index] != null) {
@@ -59,72 +71,61 @@ public class DataContainer<T> {
 
     }
 
-    //  6. В данном классе должен быть метод T[] getItems(). Данный метод возвращает поле data.
+    //  Задание 6.
+    /**
+     * Получает поля data
+     * @return поле data
+     */
     public T[] getItems() {
         return this.data;
 
+    }
 
-    }//TODO...6?
 
-    //   7. Добавить метод boolean delete(int index) который будет удалять элемент из нашего поля data по индексу.
-    //            7.1 Метод возвращает true если у нас получилось удалить данные.
-//            7.1.1 Пример data = [1, 2, 3, 777]. Вызывают delete(3). Должно получиться data = [1, 2, 3]. Метод delete вернёт true
-//            7.2 Метод возвращает false если нет такого индекса.
-//            7.2.1 Пример data = [1, 2, 3, 777]. Вызывают delete(9). Должно получиться data = [1, 2, 3, 777]. Метод delete вернёт false
-//            7.3. Освободившуюся ячейку в поеле data необходимо удалить полностью. Пустых элементов не должно быть.
-//		7.3.1 Пример data = [1, 2, 3, 777]. Вызывают delete(2). Должно получиться data = [1, 2, 777]. Метод delete вернёт true
+    //  Задание 7.
 
+    /**
+     * Удаляет элемент из поля data по его индексу
+     * @param index индекс элемента, который необходимо удалить
+     * @return true, если элемент удален, false, если элемента под таким индексом нет
+     */
     public boolean delete(int index) {
-
-        if (index == 0 && index == this.data.length - 1 && this.data[0] != null) {
-            this.data = null;
-            return true;
+        if(index >= this.data.length || index < 0) {
+            return false;
         }
-        if (index >= 0 && index <= (data.length - 1)) {
-            for (int i = index; i < data.length - 1; i++) {
-                this.data[i] = this.data[i + 1];
-            }
-            this.data = Arrays.copyOf(this.data, this.data.length - 1);
-            return true;
-        }
-        return false;
 
+        for(int i = index; i < this.data.length-1; i++) {
+            this.data[i] = this.data[i+1];
+        }
+        this.data = Arrays.copyOf(this.data, this.data.length - 1);
+        return true;
     }
 
 
-    //  8. Добавить метод boolean delete(T item) который будет удалять элемент из нашего поля data.
-    //            8.1 Метод возвращает true если у нас получилось удалить данные.
-//            8.1.1 Пример data = [1, 2, 3, 777]. Вызывают delete(777). Должно получиться data = [1, 2, 3]. Метод delete вернёт true
-//            8.2 Метод возвращает false если нет такого элемента.
-//            8.2.1 Пример data = [1, 2, 3, 777]. Вызывают delete(111). Должно получиться data = [1, 2, 3, 777]. Метод delete вернёт false
-//            8.3 Освободившуюся ячейку необходимо удалить полностью. Пустых элементов не должно быть.
-//		8.3.1 Пример data = [1, 2, 3, 777, 3]. Вызывают delete(3). Должно получиться data = [1, 2, 777, 3]. Метод delete вернёт true
-
+    //  Задание 8.
+    /**
+     * Удаляет элемент из поля data по его значению
+     * @param item элемент, который необходимо удалить
+     * @return true, если элемент удален, false, если такого элемента нет или не удален
+     */
     public boolean delete1(T item) {
-        boolean forCompare = false;
-
-        for (int i = 0; i < data.length - 1; ) {
-            if (!this.data[i].equals(item)) {
-                i++;
-            } else {
-                int j = i;
-                forCompare = true;
-                for (; j < data.length - 1; j++) {
-                    this.data[j] = this.data[j + 1];
-                }
-            }
+        if(item == null){
+            return false;
         }
-        if (forCompare) {
-            this.data = Arrays.copyOf(this.data, this.data.length - 1);
-            return true;
+        for (int i = 0; i < this.data.length; i++) {
+            if(this.data[i].equals(item)) {
+                return delete(i);
+            }
         }
         return false;
     }
 
 
-    //9. Добавить НЕ СТАТИЧЕСКИЙ метод void sort(Comparator<.......> comparator). Данный метод занимается сортировкой данных
-// записанных в поле data используя реализацию сравнения из ПЕРЕДАННОГО объекта comparator. Классом Arrays пользоваться запрещено.
-    // todo 9.
+    // Задание 9.
+    /**
+     * Метод сортирует данные в поле data, используя реализацию сравнения из переданного объекта Comparator
+     * @param comparator компаратор для сравнения элементов поля data
+     */
     public void sort(Comparator<T> comparator) {
 
         int fromIndex = 0;
@@ -134,9 +135,7 @@ public class DataContainer<T> {
         while ((fromIndex < toIndex) && doneSort) {
 
             for (int i = fromIndex; i < toIndex; i++) {
-                if (fromIndex < 0 || toIndex > this.data.length - 1) {
-                    System.out.println("Индекс лежит за пределами массива");
-                }
+
                 if (this.data[i] == null || this.data[i + 1] == null) {
                     System.out.println("В массиве есть пустые элементы  (null) элементы");
                 }
@@ -150,9 +149,7 @@ public class DataContainer<T> {
             toIndex--;
 
             for (int i = toIndex; i > fromIndex; i--) {
-                if (fromIndex < 0 || toIndex > this.data.length - 1) {
-                    System.out.println("Индекс лежит за пределами массива ");
-                }
+
                 if (this.data[i - 1] == null || this.data[i] == null) {
                     System.out.println("В массиве есть пустые элементы  (null) элементы");
                 }
@@ -167,15 +164,38 @@ public class DataContainer<T> {
         }
     }
 
-    //10. Переопределить метод toString() в классе и выводить содержимое data без ячеек в которых хранится null.
+    // Задание 10.
+    /**
+     * Метод выводит содержимое data без ячеек, в которых хранится null
+     * @return строку элементов без null
+     */
+    @Override
     public String toString() {
-        return "data = " + Arrays.toString(data).replaceAll(", *null *","").replaceAll(" *null, *", "");
+        StringBuilder fullArr = new StringBuilder("[");
+        boolean useComma = false;
+        for(T item : this.data) {
+            if (item != null) {
+                if (useComma) {
+                    fullArr.append(", ");
+                } else {
+                    useComma = true;
+                }
+                fullArr.append(item);
+            }
+        }
+        fullArr.append("]");
+        return fullArr.toString();
     }
 
-    //11.* В даном классе должен быть СТАТИЧЕСКИЙ метод sort который будет принимать объект DataContainer с
-    // дженериком extends Comparable. Данный метод будет сортировать элементы в ПЕРЕДАННОМ объекте DataContainer
-    // используя реализацию сравнения вызываемый у хранимых объектов. Для этого надо сделать дженерик метод.
 
+
+    // Задание 11.*
+
+    /**
+     * Этот метод сортирует элементы в контейнере, используя реализованный метод СompareTo fromobjects в переданном контейнере данных.
+     * @param dataContainer контейнер с объектами, подлежащими сортировке.
+     * @param <T> общий параметр расширяет сопоставимый.
+     */
     public static <T extends Comparable<T>> void sort(DataContainer<T> dataContainer) {
         int fromIndex = 0;
         int toIndex = dataContainer.data.length - 1;
@@ -212,11 +232,15 @@ public class DataContainer<T> {
             fromIndex++;
         }
     }
-    //12.* В данном классе должен быть СТАТИЧЕСКИЙ метод void sort(DataContainer<.............> container, Comparator<.......> comparator)
-    // который будет принимать объект DataContainer и реализацию интерфейса Comparator. Данный метод будет сортировать элементы
-    // в ПЕРЕДАННОМ объекте DataContainer используя реализацию сравнения из ПЕРЕДАННОГО объекта интерфейса Comparator.
+    //Задание 12.*
 
-    public static <T extends Comparable<T>> void sort(DataContainer<T> dataContainer, Comparator<T> comparator) {
+    /**
+     * Метод сортирует элементы в переданном контейнере с помощью переданного объекта компаратора
+     * @param dataContainer контейнер с объектами, подлежащими сортировке.
+     * @param comparator переданный объект компаратора
+     * @param <T> общий параметр расширяет сопоставимый.
+     */
+    public static <T extends Comparable<T>> void sort(DataContainer<T> dataContainer, ComComparator<T> comparator) {
         int fromIndex = 0;
         int toIndex = dataContainer.data.length - 1;
         boolean doneSort = true;
@@ -252,13 +276,20 @@ public class DataContainer<T> {
             fromIndex++;
         }
     }
-    //13.** Реализовать в DataContainer интерфейс Iterable
+    //Задание 13.
 
+    /**
+     * Класс генерирует экземпляр итератора контейнера данных класса и возвращает его.
+     * @return экземпляр итератора контейнера данных
+     */
     public Iterator<T> iterator() {
         return new DataContainerIterator();
     }
 
-    private class DataContainerIterator implements Iterator<T>, HomeWork4.DataContainerIterator {
+    /**
+     * Этот класс реализует интерфейс итератора и переопределяет методы hasNext() и next().
+     */
+    private class DataContainerIterator implements Iterator<T>, HomeWork4.api.DataContainerIterator {
         private int index;
 
         public DataContainerIterator() {

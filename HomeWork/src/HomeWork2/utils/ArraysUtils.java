@@ -1,4 +1,4 @@
-package HomeWork2.loops.arrays;
+package HomeWork2.utils;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -6,9 +6,7 @@ import java.util.Scanner;
 
 
 public class ArraysUtils {
-    public static void main(String[] args) {
 
-    }
 
     public static int[] arrayFromConsole() {
         Scanner console = new Scanner(System.in);
